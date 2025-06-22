@@ -29,7 +29,7 @@ host: localhost:8080
 info:
   contact: {}
   description: This is an API for cat facts and comments.
-  title: Catify API
+  title: Catify Lite API
   version: "1.0"
 paths:
   /comments:

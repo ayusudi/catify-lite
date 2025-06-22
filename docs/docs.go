@@ -284,7 +284,7 @@ var SwaggerInfo = &swag.Spec{
 	Host:             "localhost:8080",
 	BasePath:         "/",
 	Schemes:          []string{"http"},
-	Title:            "Catify API",
+	Title:            "Catify Lite API",
 	Description:      "This is an API for cat facts and comments.",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,

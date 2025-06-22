@@ -11,7 +11,7 @@ import (
 	"github.com/ayusudi/catify-lite/routes"
 )
 
-// @title Catify API
+// @title Catify Lite API
 // @version 1.0
 // @description This is an API for cat facts and comments.
 // @host localhost:8080

@@ -1,0 +1,9 @@
+# render.yaml
+services:
+  - type: web
+    name: catify-lite-api
+    env: go
+    plan: free
+    buildCommand: go build -o server .
+    startCommand: ./server
+    autoDeploy: true

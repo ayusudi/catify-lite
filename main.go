@@ -1,12 +1,10 @@
-// main.go
-
 package main
 
 import (
-	"net/http"
+	"log"
+	"os"
 
 	"github.com/ayusudi/catify-lite/config"
-	_ "github.com/ayusudi/catify-lite/docs"
 	"github.com/ayusudi/catify-lite/routes"
 	"github.com/labstack/echo/v4"
 	echoSwagger "github.com/swaggo/echo-swagger"
@@ -14,26 +12,36 @@ import (
 
 // @title Catify API
 // @version 1.0
-// @description This is an API for cat facts and comments.
-// @host localhost:8080
+// @description A simple API for cat facts and comments
+// @host catify-api.onrender.com
 // @BasePath /
-
-// @schemes http
+// @schemes https
 func main() {
+	// Connect to TiDB
 	config.ConnectDB()
+
+	// Run auto migration
 	config.Migrate()
 
+	// Initialize Echo
 	e := echo.New()
 
+	// Init your app routes (facts, comments, etc.)
 	routes.InitRoutes(e)
 
-	// In main.go
+	// Swagger UI at /docs/*
 	e.GET("/docs/*", echoSwagger.WrapHandler)
 
+	// Redirect root / to Swagger UI
 	e.GET("/", func(c echo.Context) error {
-		return c.Redirect(http.StatusMovedPermanently, "/docs/index.html")
+		return c.Redirect(301, "/docs/index.html")
 	})
 
-	
-	e.Logger.Fatal(e.Start(":8080"))
+	// Start server
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+	log.Println("🚀 Server running at http://localhost:" + port)
+	e.Logger.Fatal(e.Start(":" + port))
 }

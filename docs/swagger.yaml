@@ -25,10 +25,10 @@ definitions:
           ones.
         type: string
     type: object
-host: localhost:8080
+host: catify-api.onrender.com
 info:
   contact: {}
-  description: This is an API for cat facts and comments.
+  description: A simple API for cat facts and comments
   title: Catify API
   version: "1.0"
 paths:
@@ -177,5 +177,5 @@ paths:
       tags:
       - facts
 schemes:
-- http
+- https
 swagger: "2.0"

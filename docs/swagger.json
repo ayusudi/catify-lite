@@ -1,15 +1,15 @@
 {
     "schemes": [
-        "http"
+        "https"
     ],
     "swagger": "2.0",
     "info": {
-        "description": "This is an API for cat facts and comments.",
+        "description": "A simple API for cat facts and comments",
         "title": "Catify API",
         "contact": {},
         "version": "1.0"
     },
-    "host": "localhost:8080",
+    "host": "catify-api.onrender.com",
     "basePath": "/",
     "paths": {
         "/comments": {

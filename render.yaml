@@ -1,9 +1,19 @@
-# render.yaml
 services:
   - type: web
-    name: catify-lite-api
+    name: catify-api
     env: go
     plan: free
-    buildCommand: go build -o server .
-    startCommand: ./server
+    buildCommand: go build -o app .
+    startCommand: ./app
     autoDeploy: true
+    envVars:
+      - key: DB_USER
+        value: your_tidb_user
+      - key: DB_PASS
+        value: your_tidb_password
+      - key: DB_HOST
+        value: your_tidb_host_url
+      - key: DB_NAME
+        value: your_database_name
+      - key: DB_TLS_NAME
+        value: tidb

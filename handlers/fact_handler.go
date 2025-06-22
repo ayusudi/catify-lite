@@ -41,7 +41,7 @@ func GetRandomFact(c echo.Context) error {
 // @Tags facts
 // @Accept json
 // @Produce json
-// @Param body body struct{ Fact string `json:"fact"` } true "Fact to save"
+// @Param body body models.SaveFactRequest true "Fact to save"
 // @Success 200 {object} map[string]interface{}
 // @Failure 400 {object} map[string]string
 // @Failure 409 {object} map[string]string

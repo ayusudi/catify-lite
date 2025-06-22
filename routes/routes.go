@@ -14,5 +14,5 @@ func InitRoutes(e *echo.Echo) {
 
 	// COMMENT routes
 	e.POST("/comments", handlers.PostComment)         // comment on a fact
-	e.GET("/facts/:id/comments", handlers.GetComments) // view comments for a fact
+	e.GET("/comments/facts/:id", handlers.GetComments) // view comments for a fact
 }

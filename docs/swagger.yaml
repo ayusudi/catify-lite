@@ -1,11 +1,181 @@
 basePath: /
+definitions:
+  models.CatFact:
+    properties:
+      fact:
+        type: string
+      id:
+        type: integer
+    type: object
+  models.Comment:
+    properties:
+      comment:
+        type: string
+      fact_id:
+        type: integer
+      id:
+        type: integer
+      name:
+        type: string
+    type: object
+  models.SaveFactRequest:
+    properties:
+      fact:
+        example: Cats have five toes on their front paws, but only four on the back
+          ones.
+        type: string
+    type: object
 host: localhost:8080
 info:
   contact: {}
   description: This is an API for cat facts and comments.
   title: Catify API
   version: "1.0"
-paths: {}
+paths:
+  /comments:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Comment data
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/models.Comment'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Comment'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Post a comment on a specific cat fact
+      tags:
+      - comments
+  /facts:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.CatFact'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Get all saved cat facts from the database
+      tags:
+      - facts
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Fact to save
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/models.SaveFactRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "409":
+          description: Conflict
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Save a cat fact to the database
+      tags:
+      - facts
+  /facts/{id}/comments:
+    get:
+      parameters:
+      - description: Fact ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Comment'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Get all comments for a specific cat fact
+      tags:
+      - comments
+  /facts/random:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Get a random cat fact from public API
+      tags:
+      - facts
 schemes:
 - http
 swagger: "2.0"

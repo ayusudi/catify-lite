@@ -2,9 +2,11 @@ package main
 
 import (
 	"log"
+	"net/http"
 	"os"
 
 	"github.com/ayusudi/catify-lite/config"
+	_ "github.com/ayusudi/catify-lite/docs"
 	"github.com/ayusudi/catify-lite/routes"
 	"github.com/labstack/echo/v4"
 	echoSwagger "github.com/swaggo/echo-swagger"
@@ -34,7 +36,7 @@ func main() {
 
 	// Redirect root / to Swagger UI
 	e.GET("/", func(c echo.Context) error {
-		return c.Redirect(301, "/docs/index.html")
+		return c.Redirect(http.StatusMovedPermanently, c.Scheme()+"://"+c.Request().Host+"/docs/index.html")
 	})
 
 	// Start server

@@ -9,7 +9,7 @@ import (
 func InitRoutes(e *echo.Echo) {
 	// FACT routes
 	e.GET("/facts/random", handlers.GetRandomFact) // fetch from API
-	e.POST("/facts/save", handlers.SaveFact)       // save to DB
+	e.POST("/facts", handlers.SaveFact)       // save to DB
 	e.GET("/facts", handlers.GetSavedFacts)        // list saved facts
 
 	// COMMENT routes

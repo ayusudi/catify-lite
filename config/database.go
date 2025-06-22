@@ -7,6 +7,7 @@ import (
 	"os"
 
 	sqlDriver "github.com/go-sql-driver/mysql"
+	"github.com/joho/godotenv"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
@@ -14,6 +15,10 @@ import (
 var DB *gorm.DB
 
 func ConnectDB() {
+	errEnv := godotenv.Load()
+	if errEnv != nil {
+		log.Println("⚠️  No .env file found")
+	}
 	// Register TLS for TiDB Cloud
 	err := sqlDriver.RegisterTLSConfig(os.Getenv("DB_TLS_NAME"), &tls.Config{
 		MinVersion: tls.VersionTLS12,

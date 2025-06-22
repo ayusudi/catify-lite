@@ -2,7 +2,6 @@ package main
 
 import (
 	"log"
-	"net/http"
 	"os"
 
 	"github.com/ayusudi/catify-lite/config"
@@ -33,11 +32,6 @@ func main() {
 
 	// Swagger UI at /docs/*
 	e.GET("/docs/*", echoSwagger.WrapHandler)
-
-	// Redirect root / to Swagger UI
-	e.GET("/", func(c echo.Context) error {
-		return c.Redirect(http.StatusMovedPermanently, "https://catify-api.onrender.com/docs/index.html")
-	})
 
 	// Start server
 	port := os.Getenv("PORT")

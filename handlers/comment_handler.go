@@ -15,13 +15,12 @@ import (
 // @Tags comments
 // @Accept json
 // @Produce json
-// @Param body body models.Comment true "Comment data"
+// @Param body body models.SaveCommentRequest true "Comment to save"
 // @Success 200 {object} models.Comment
 // @Failure 400 {object} map[string]string
 // @Failure 500 {object} map[string]string
 // @Router /comments [post]
 func PostComment(c echo.Context) error {
-	// POST /comments
 	var comment models.Comment
 	if err := c.Bind(&comment); err != nil {
 		return c.JSON(http.StatusBadRequest, echo.Map{"error": "Invalid comment data"})
@@ -46,9 +45,8 @@ func PostComment(c echo.Context) error {
 // @Success 200 {array} models.Comment
 // @Failure 400 {object} map[string]string
 // @Failure 500 {object} map[string]string
-// @Router /facts/{id}/comments [get]
+// @Router /facts/comments/{id} [get]
 func GetComments(c echo.Context) error {
-	// GET /facts/:id/comments
 	factIDStr := c.Param("id")
 	factID, err := strconv.Atoi(factIDStr)
 	if err != nil {

@@ -3,12 +3,13 @@
 package main
 
 import (
-	"github.com/labstack/echo/v4"
-	echoSwagger "github.com/swaggo/echo-swagger"
+	"net/http"
 
 	"github.com/ayusudi/catify-lite/config"
 	_ "github.com/ayusudi/catify-lite/docs"
 	"github.com/ayusudi/catify-lite/routes"
+	"github.com/labstack/echo/v4"
+	echoSwagger "github.com/swaggo/echo-swagger"
 )
 
 // @title Catify API
@@ -26,8 +27,13 @@ func main() {
 
 	routes.InitRoutes(e)
 
-	// Swagger route
-	e.GET("/*", echoSwagger.WrapHandler)
+	// In main.go
+	e.GET("/docs/*", echoSwagger.WrapHandler)
+
+	e.GET("/", func(c echo.Context) error {
+		return c.Redirect(http.StatusMovedPermanently, "/docs/index.html")
+	})
+
 	
 	e.Logger.Fatal(e.Start(":8080"))
 }

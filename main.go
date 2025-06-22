@@ -36,7 +36,7 @@ func main() {
 
 	// Redirect root / to Swagger UI
 	e.GET("/", func(c echo.Context) error {
-		return c.Redirect(http.StatusMovedPermanently, c.Scheme()+"://"+c.Request().Host+"/docs/index.html")
+		return c.Redirect(http.StatusMovedPermanently, "https://catify-api.onrender.com/docs/index.html")
 	})
 
 	// Start server

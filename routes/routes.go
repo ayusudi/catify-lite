@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"catify-lite/handlers"
+	"github.com/ayusudi/catify-lite/handlers"
 
 	"github.com/labstack/echo/v4"
 )

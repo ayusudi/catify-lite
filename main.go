@@ -1,7 +1,9 @@
+package main
+
 import (
+	"github.com/ayusudi/catify-lite/config"
+	"github.com/ayusudi/catify-lite/routes"
 	"github.com/labstack/echo/v4"
-	"catify-lite/config"
-	"catify-lite/routes"
 )
 
 func main() {

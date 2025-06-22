@@ -3,8 +3,8 @@ package handlers
 import (
 	"net/http"
 
-	"catify-lite/config"
-	"catify-lite/models"
+	"github.com/ayusudi/catify-lite/config"
+	"github.com/ayusudi/catify-lite/models"
 
 	"github.com/labstack/echo/v4"
 )

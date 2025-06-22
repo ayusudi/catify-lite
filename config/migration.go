@@ -1,8 +1,9 @@
 package config
 
 import (
-	"catify-lite/models"
 	"log"
+
+	"github.com/ayusudi/catify-lite/models"
 )
 
 func Migrate() {
